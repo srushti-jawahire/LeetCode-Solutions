@@ -1,0 +1,43 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x<0) return false;
+       int last_digit=0;
+       vector<int> num;
+       while(x>0){
+        last_digit=x%10;
+        num.push_back(last_digit);
+        x=x/10;
+       }
+       int n=num.size();
+       int left=0;
+       int right=n-1;
+       while(left<right){
+        if(num[left]!=num[right]) return false;
+        else {
+            left++;
+            right--;
+        }
+       }
+       return true;
+    }
+};
+
+=======================OR=================================
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        if(x<0) return false;
+        int cpy_num=x;
+        int reverse_num=0;
+
+    while(cpy_num>0){
+            int last_digit=cpy_num%10;
+            if(reverse_num>INT_MAX/10 || reverse_num<INT_MIN/10) return 0;
+            reverse_num=(reverse_num*10)+last_digit;
+            cpy_num=cpy_num/10;
+        }
+        if(x==reverse_num) return true;
+        return false;
+    }
+};
